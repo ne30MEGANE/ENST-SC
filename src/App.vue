@@ -1,28 +1,62 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+    <ul class="nav uk-flex-around" uk-tab>
+      <li><a>Songs</a></li>
+      <li><a>Others</a></li>
+    </ul>
+    <div class="uk-switcher uk-margin">
+      <section>
+        <!-- ソート・フィルターはここに入る -->
+        <Songs />
+      </section>
+      <section><Others /></section>
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header'
+import Songs from './components/Songs'
+import Others from './components/Others'
+import Footer from './components/Footer'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Songs,
+    Others,
+    Footer
   }
 }
 </script>
 
-<style>
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto:wght@700&display=swap");
+
+@import "stylesheets/variables";
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100%;
+  .uk-tab{
+    a{
+      padding-bottom: 0;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      font-size: 38pt;
+      text-transform: none;
+      border-bottom-width: 4px;
+    }
+    .uk-active{
+      a{
+        border-color: $shadow_blue;
+      }
+    }
+    &::before{
+      border: none;
+    }
+  }
 }
 </style>
