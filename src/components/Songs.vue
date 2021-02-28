@@ -12,11 +12,13 @@ export default {
   data() {
     return {
       songs: [],
+      api_url: process.env.VUE_APP_MUSIC_API_URL,
+      orders: "?orders=inner_id",
       loaded: false
     };
   },
   mounted() {
-    axios.get( process.env.VUE_APP_MUSIC_API_URL , {
+    axios.get( this.api_url + this.orders , {
       headers: { "X-API-KEY": process.env.VUE_APP_MUSIC_API_KEY },
       params: { limit: 500 }
     }).then((response) => {
