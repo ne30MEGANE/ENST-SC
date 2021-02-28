@@ -8,3 +8,50 @@ $light_gray:#e1e1e1;
 $all:linear-gradient(45deg, #ff8fa4 11.98%, #feffb7 37.5%, #bdffb7 63.54%, #aaf8ff 89.58%);
 
 $modal_blue: #05034f;
+
+.Sparkle{
+  color: $sparkle;
+  border-top-color: $sparkle;
+}
+.Brilliant{
+  color: $brilliant;
+  border-top-color: $brilliant;
+}
+.Glitter{
+  color: $glitter;
+  border-top-color: $glitter;
+}
+.Flash{
+  color: $flash;
+  border-top-color: $flash;
+}
+.All{
+  color: $gray;
+  &::before{
+    content: "";
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    position: absolute;
+    border-style: solid;
+    border-width: 50px 50px 0 0;
+    border-image: $all;
+  }
+  &::after{
+    content: "";
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    position: absolute;
+    border-style: solid;
+    border-width: 0 0 50px 50px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: white;
+    border-left-color: transparent;
+  }
+}
