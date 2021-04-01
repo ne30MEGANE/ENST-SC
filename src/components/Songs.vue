@@ -1,13 +1,17 @@
 <template>
-  <div class="songs">
-    <div class="list_wrapper">
-      <div class="list" v-for="s in songs" v-bind:key="s.inner_id" v-bind:class="s.type">
-        <div class="song_title">
-          <h3>{{ s.title }}</h3>
-        </div>
-        <div class="song_info">
-          <h6>Lv.{{ s.level }}</h6>
-          <h6>{{ s.singer }}</h6>
+  <div class="songs_wrapper">
+    <SongNav v-bind:musics="songs" />
+
+    <div class="songs">
+      <div class="list_wrapper">
+        <div class="list" v-for="s in songs" v-bind:key="s.inner_id" v-bind:class="s.type">
+          <div class="song_title">
+            <h3>{{ s.title }}</h3>
+          </div>
+          <div class="song_info">
+            <h6>Lv.{{ s.level }}</h6>
+            <h6>{{ s.singer }}</h6>
+          </div>
         </div>
       </div>
     </div>
@@ -16,9 +20,11 @@
 
 <script>
 import axios from "axios";
+import SongNav from './Song-nav';
 
 export default {
   name: "songs",
+  components: { SongNav },
   data() {
     return {
       songs: [],
@@ -43,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../stylesheets/variables";
-.songs{
+::v-deep .songs{ // ランダム選曲モーダルでもsongクラスを適用
   display: flex;
   flex-flow: column nowrap;
   align-items: center;

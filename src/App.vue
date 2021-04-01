@@ -7,7 +7,6 @@
     </ul>
     <div class="uk-switcher uk-margin">
       <section>
-        <!-- ソート・フィルターはここに入る -->
         <Songs />
       </section>
       <section><Others /></section>
