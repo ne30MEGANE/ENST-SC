@@ -6,18 +6,24 @@
     </div>
 
     <!-- 以下モーダル -->
-    <modal name="Random" height="auto" styles="
+    <modal name="Random" height="auto" :maxWidth=595 styles="
       background: #e1e1e1;
       border: 2px solid #05034f;
-      border-radius: 7px;">
+      border-radius: 9px;">
       <h2 class="modal_title">ランダム選曲結果</h2>
       <div class="modal_body">
-        <!-- <div class="song" v-bind:class="random_music.type" style="width:90%; margin:0 auto;"> -->
-          <!-- ここに曲表示 -->
-          <div class="button_area">
-              <p v-on:click="RandomModalClose" class="modal_button">閉じる</p>
+        <div class="list" v-bind:class="random_music.type" style="width:90%; margin:0 auto;">
+          <div class="song_title">
+            <h3>{{ random_music.title }}</h3>
           </div>
-        <!-- </div> -->
+          <div class="song_info">
+            <h6>Lv.{{ random_music.level }}</h6>
+            <h6>{{ random_music.singer }}</h6>
+          </div>
+        </div>
+        <div class="button_area">
+            <p v-on:click="RandomModalClose" class="modal_button">閉じる</p>
+        </div>
       </div>
     </modal>
 
@@ -31,7 +37,7 @@ export default {
   props: ["musics"],
   data(){
     return {
-      ramdom_music: {
+      random_music: {
         "type": "",
         "title": "",
         "singer": "",
@@ -40,8 +46,12 @@ export default {
     }
   },
   methods: {
-    SetRandomMusic: function(){
-      //ランダム選曲処理 (songsから1つ選んでセット)
+    SetRandomMusic: function(){ //ランダム選曲処理 (songsから1つ選んでセット)
+      let i = getRandomInt(0, this.musics.length);
+      this.random_music.type = this.musics[i].type;
+      this.random_music.title = this.musics[i].title;
+      this.random_music.singer = this.musics[i].singer;
+      this.random_music.level = this.musics[i].level;
     },
     RandomModalOpen: function(){
       this.SetRandomMusic();
@@ -52,10 +62,18 @@ export default {
     }
   }
 }
+
+function getRandomInt(min, max) { // 指定範囲内のランダムな整数を返す
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 </script>
 
 <style lang="scss" scoped>
 @import "../stylesheets/variables";
+@import "../stylesheets/song";
+
 .navs{
   display: flex;
   flex-flow: row nowrap;
@@ -83,6 +101,7 @@ export default {
   border-radius: 7px !important;
 }
 .modal_body{
+  position: relative;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
