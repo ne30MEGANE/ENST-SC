@@ -6,6 +6,9 @@ import 'uikit/dist/css/uikit.css'
 import 'uikit/dist/css/uikit.min.css'
 UIkit.use(Icons)
 
+import VModal from 'vue-js-modal'
+Vue.use(VModal)
+
 Vue.config.productionTip = false
 
 new Vue({
