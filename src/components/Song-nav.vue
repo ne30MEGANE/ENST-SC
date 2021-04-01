@@ -1,7 +1,7 @@
 <template>
   <div class="song_nav">
     <div class="navs">
-      <p><a>フィルター・ソート</a></p>
+      <p><a v-on:click="SortFilterModalOpen">フィルター・ソート</a></p>
       <p><a v-on:click="RandomModalOpen">ランダム選曲</a></p>
     </div>
 
@@ -18,6 +18,17 @@
               <p v-on:click="RandomModalClose" class="modal_button">閉じる</p>
           </div>
         <!-- </div> -->
+      </div>
+    </modal>
+
+    <modal name="SortFilter" height="auto" styles="
+      background: #e1e1e1;
+      border: 2px solid #05034f;
+      border-radius: 7px;">
+      <h2 class="modal_title">ソート・フィルター</h2>
+      <!-- ここにソートとフィルターの各項目 -->
+      <div class="button_area">
+        <p v-on:click="SortFilterModalClose" class="modal_button">決定</p>
       </div>
     </modal>
 
@@ -49,6 +60,12 @@ export default {
     },
     RandomModalClose: function(){
       this.$modal.hide("Random");
+    },
+    SortFilterModalOpen: function(){
+      this.$modal.show("SortFilter");
+    },
+    SortFilterModalClose: function(){
+      this.$modal.hide("SortFilter");
     }
   }
 }
