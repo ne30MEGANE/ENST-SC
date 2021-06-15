@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <div id="grad_u"></div>
+    <div id="grad_r"></div>
+    <div id="grad_d"></div>
+    <div id="grad_l"></div>
     <Header />
     <ul class="nav uk-flex-around" uk-tab>
       <li><a>Songs</a></li>
@@ -39,6 +43,39 @@ export default {
 
 #app {
   width: 100%;
+  height: 100%;
+  #grad_u,#grad_r,#grad_d,#grad_l {
+    position: fixed;
+    z-index: 10;
+    margin: -15px;
+    padding: 0;
+  }
+  #grad_u,#grad_d {
+    left: 0;
+    width: 100%;
+    height: 0;
+  }
+  #grad_r,#grad_l {
+    top: 0;
+    width: 0;
+    height: 100%;
+  }
+  #grad_u {
+    top: 0;
+    box-shadow: 0 15px 15px 15px $shadow_blue;
+  }
+  #grad_r {
+    right: 0;
+    box-shadow: -15px 0 15px 15px $shadow_blue;
+  }
+  #grad_d {
+    bottom: 0;
+    box-shadow: 0 -15px 15px 15px $shadow_blue;
+  }
+  #grad_l {
+    left: 0;
+    box-shadow: 15px 0 15px 15px $shadow_blue;
+  }
   .uk-tab{
     a{
       padding-bottom: 0;
