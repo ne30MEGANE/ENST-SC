@@ -4,8 +4,7 @@
     <div class="text">
       当サイトは「もっともシンプルな楽曲一覧サイト」をコンセプトとして制作した
       あんさんぶるスターズ!!Musicのファンサイトです。<br>
-      楽曲情報はゲームアプリで確認後手動で追加・管理しておりますので、
-      情報のミスや不定期な更新については予めご了承ください。<br>
+      楽曲情報はゲームアプリで確認後手動で追加・管理しております。<br>
     </div>
     <h3>このサイトの使い方</h3>
     <div class="text">
@@ -16,8 +15,10 @@
         <li>楽曲名</li>
         <li>歌唱ユニット名</li>
         <li>楽曲属性</li>
-        <li>楽曲レベル(EXPERT)</li>
+        <li>楽曲レベル(Expert)</li>
       </ul>
+      のんきに開発しているうちに新難易度が追加されました。<br>
+      Specalの楽曲レベルもどうにか一緒に掲載したいですが、追々実装します。<br>
       <h4>ソート・フィルター機能について</h4>
       楽曲一覧を並び替えたり、フィルターをかけたりすることができます。<br>
       並び替えとフィルターの両方を指定し決定ボタンを押すことで、同時に適用することもできます。<br>
@@ -33,19 +34,26 @@
       "②インターネット上の利用について"に記載されている規約を満たすものという解釈の上で制作・公開しています。<br>
       今後コンテンツ利用ガイドラインの更新に伴って予告なくサイトの公開を取りやめる可能性がありますので、予めご了承ください。<br>
       <br>
-      情報のミスやサイトのバグ等は以下のTwitterアカウントまでお寄せいただけると幸いです。<br>
+      掲載情報のミスやサイトのバグ等は以下のTwitterアカウントまでお寄せいただけますと幸いです。<br>
       <a href="https://twitter.com/ed_mgn"  target="_blank" rel="noopener noreferrer">開発者Twitterアカウント<img src="../assets/125_arr_hoso.svg"></a>
     </div>
     <h3>更新情報</h3>
-    <div class="text">
-      <ul>
-        <li>2021/mm/dd サイトを公開しました</li>
-      </ul>
-    </div>
+      <Release />
+    <h3>既知のバグ</h3>
+      <Bugs />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<script>
+import Release from './Release.vue'
+import Bugs from './Bugs.vue'
+export default {
+  components:{ Release, Bugs }
+  
+}
+</script>
+
+<style lang="scss">
 @import "../stylesheets/variables";
 .others{
   width: 90%;
