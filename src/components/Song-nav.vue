@@ -26,9 +26,14 @@
       border: 2px solid #05034f;
       border-radius: 7px;">
       <h2 class="modal_title">ソート・フィルター</h2>
-      <!-- ここにソートとフィルターの各項目 -->
-      <div class="button_area">
-        <p v-on:click="SortFilterModalClose" class="modal_button">決定</p>
+      <div class="modal_body">
+        <h3>ソート</h3>
+          <input type="radio" name="order" value="?orders=inner_id" v-model="sort">デフォルト
+          <input type="radio" name="order" value="?orders=level" v-model="sort">楽曲レベル順
+        <h3>フィルター</h3>
+        <div class="button_area">
+          <p v-on:click="SortFilterModalClose" class="modal_button">決定</p>
+        </div>
       </div>
     </modal>
 
@@ -47,7 +52,8 @@ export default {
         "title": "",
         "singer": "",
         "level": 0
-      }
+      },
+      sort: "?orders=inner_id"
     }
   },
   methods: {
@@ -65,7 +71,11 @@ export default {
       this.$modal.show("SortFilter");
     },
     SortFilterModalClose: function(){
+      this.SortFilter(this.sort);
       this.$modal.hide("SortFilter");
+    },
+    SortFilter(s){
+      this.$emit("SortFilter", s);
     }
   }
 }
@@ -105,6 +115,16 @@ export default {
   justify-content: space-between;
   align-content: space-around;
   padding: 1%;
+  > h3 {
+    background-color: $modal_blue;
+    padding: 3px 0 3px 1em;
+
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: white;
+  }
 }
 .modal_title{
   background-color: $modal_blue;

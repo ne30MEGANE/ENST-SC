@@ -1,6 +1,6 @@
 <template>
   <div class="songs_wrapper">
-    <SongNav v-bind:musics="songs" />
+    <SongNav v-bind:musics="songs" @SortFilter="SortFilter"/>
 
     <div class="songs">
       <div class="list_wrapper">
@@ -29,19 +29,28 @@ export default {
     return {
       songs: [],
       api_url: process.env.VUE_APP_MUSIC_API_URL,
-      orders: "?orders=inner_id",
+      order: "?orders=inner_id", // 初期値
+      query: "", // 初期値
       loaded: false
     };
   },
   mounted() {
-    axios.get( this.api_url + this.orders , {
-      headers: { "X-API-KEY": process.env.VUE_APP_MUSIC_API_KEY },
-      params: { limit: 500 }
-    }).then((response) => {
-      console.log(response)
-      this.songs = response.data.contents;
-      this.loaded = true; // 読み込み終わったらture
-    });
+    this.DataLoad();
+  },
+  methods: {
+    DataLoad() {
+      axios.get( this.api_url + this.order + this.query , {
+        headers: { "X-API-KEY": process.env.VUE_APP_MUSIC_API_KEY },
+        params: { limit: 500 }
+      }).then((response) => {
+        console.log(response)
+        this.songs = response.data.contents;
+      });
+    },
+    SortFilter(s) {
+      this.order = s;
+      this.DataLoad();
+    }
   }
 }
 
